@@ -1,0 +1,14 @@
+.splitFlap {
+	border: 1px solid red;
+	border-radius: 0.5rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: red;
+	color: #fff;
+	padding: 1rem 0.5rem;
+	font-size: 2.5rem;
+	width: 2.5rem;
+	height: 4rem;
+	margin: 0.25rem;
+}
