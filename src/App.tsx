@@ -1,22 +1,26 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useRef } from 'react';
 import SplitFlap from './SplitFlap';
 import './index.css';
 
 export default function App() {
 	const [inputChar, setInputChar] = useState<string>(' ');
+	const previousChar = useRef<string>(' ');
 
 	const handleCharInput = (e: ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.currentTarget;
-		if (value === '') setInputChar(' ');
-		setInputChar(value[value.length - 1]);
+		setInputChar((prevValue) => {
+			previousChar.current = prevValue;
+
+			return value[value.length - 1] || ' ';
+		});
 	};
 
 	return (
 		<div className="app">
-			<SplitFlap char={inputChar} />
+			<SplitFlap previousChar={previousChar.current} char={inputChar} />
 
 			<div className="input">
-				<input onChange={handleCharInput} value={inputChar} />
+				<input value={inputChar} onChange={handleCharInput} />
 			</div>
 		</div>
 	);
