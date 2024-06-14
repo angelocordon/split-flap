@@ -1,4 +1,4 @@
-export type Character = typeof CHARACTERS;
+export type Character = (typeof CHARACTERS)[number];
 
 export const CHARACTERS = [
 	' ',
@@ -53,4 +53,4 @@ export const CHARACTERS = [
 	'=',
 	'{',
 	'}',
-];
+] as const;
