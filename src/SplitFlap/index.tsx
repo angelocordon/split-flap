@@ -2,41 +2,33 @@ import { useState, useRef } from 'react';
 import { CHARACTERS } from './constants';
 import './style.css';
 
+const CHARS_ENDING_IDX = CHARACTERS.length - 1;
+
 const charIdx = (char: string) => CHARACTERS.indexOf(char.toUpperCase());
-const charAtIdx = (idx: number) => CHARACTERS[idx];
+const charFromIdx = (idx: number) => CHARACTERS[idx];
 
-export default function SplitFlap({
-	previousChar = ' ',
-	char: targetChar = ' ',
-}: {
-	previousChar?: string;
-	char?: string;
-}) {
-	const [currentCharacter, setCurrentCharacter] = useState(previousChar);
-	const targetCharIdx = useRef<number>(charIdx(targetChar));
+export default function SplitFlap({ char = ' ' }: { char?: string }) {
 	const tickInterval = useRef<ReturnType<typeof setInterval>>();
+	const [currentChar, setCurrentChar] = useState<string>(' ');
 
-	const tickToTarget = () => {
-		if (charIdx(currentCharacter) === targetCharIdx.current) {
+	const atEnd = () => {
+		return charIdx(currentChar) === CHARS_ENDING_IDX;
+	};
+
+	const tickToTargetChar = () => {
+		if (currentChar === char.toUpperCase()) {
 			clearInterval(tickInterval.current);
 			return;
 		}
 
-		const atEnd = charIdx(currentCharacter) + 1 === CHARACTERS.length;
-		const nextIdx = atEnd ? 0 : charIdx(currentCharacter) + 1;
-		setCurrentCharacter(charAtIdx(nextIdx));
+		const nextIdx = atEnd() ? 0 : charIdx(currentChar) + 1;
+		setCurrentChar(charFromIdx(nextIdx));
 	};
 
-	console.log({
-		previousCharIdx: charIdx(previousChar),
-		targetCharIdx: charIdx(targetChar),
-	});
+	if (currentChar !== char.toUpperCase()) {
+		clearInterval(tickInterval.current);
+		tickInterval.current = setInterval(tickToTargetChar, 250);
+	}
 
-	// if (charIdx(previousChar) !== charIdx(targetChar)) {
-	// 	setCurrentCharacter(previousChar.toUpperCase());
-	// 	targetCharIdx.current = charIdx(targetChar);
-	// 	tickInterval.current = setInterval(tickToTarget, 250);
-	// }
-
-	return <div className="splitFlap">{currentCharacter}</div>;
+	return <div className="split-flap">{currentChar}</div>;
 }

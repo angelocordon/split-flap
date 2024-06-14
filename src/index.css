@@ -6,6 +6,17 @@ body {
 	background: #262626;
 }
 
+input {
+	width: 80%;
+	background-color: #181818;
+	height: 3rem;
+	color: #fff;
+	padding: 0 1.5rem;
+	font-size: 2rem;
+	border: 0px;
+	border-radius: 0.5rem;
+}
+
 .app {
 	height: 100vh;
 	display: flex;
@@ -14,21 +25,4 @@ body {
 	gap: 5rem;
 	align-items: center;
 	justify-content: center;
-}
-
-.input {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-
-	> input {
-		width: 80%;
-		background-color: #181818;
-		height: 3rem;
-		color: #fff;
-		padding: 0 1.5rem;
-		font-size: 2rem;
-		border: 0px;
-		border-radius: 0.5rem;
-	}
 }
