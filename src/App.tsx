@@ -2,7 +2,7 @@ import { ChangeEvent, useDeferredValue, useState } from 'react';
 import SplitFlap from './SplitFlap';
 import './index.css';
 
-const MAX_FLAP_COUNT = 120;
+const MAX_FLAP_COUNT = 60;
 
 const generateSplitRows = (textString: string) => {
 	const characters = textString.split('');

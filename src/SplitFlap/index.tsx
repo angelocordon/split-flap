@@ -32,7 +32,7 @@ export default memo(function SplitFlap({ char = ' ' }: { char?: string }) {
 
 	useEffect(() => {
 		targetIndex.current = charIdx(char);
-		timeoutRef.current = setTimeout(tickToTarget, 250);
+		timeoutRef.current = setTimeout(tickToTarget, 200);
 
 		return () => {
 			clearTimeout(timeoutRef.current);
