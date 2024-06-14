@@ -18,12 +18,7 @@ export default function App() {
 
 	const handleCharInput = (e: ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.currentTarget;
-
-		setInputString(() => {
-			if (value.length < 1) return ' ';
-
-			return value;
-		});
+		setInputString(value ?? ' ');
 	};
 
 	return (
@@ -32,7 +27,7 @@ export default function App() {
 
 			<input
 				onChange={handleCharInput}
-				value={inputString}
+				value={inputString.trimStart()}
 				maxLength={MAX_FLAP_COUNT}
 			/>
 		</div>
