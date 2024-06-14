@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { CHARACTERS, type Character } from './constants';
 import './style.css';
 
@@ -16,7 +16,7 @@ const charIdx = (char: string) => {
 	return index === -1 ? 0 : index;
 };
 
-export default function SplitFlap({ char = ' ' }: { char?: string }) {
+export default memo(function SplitFlap({ char = ' ' }: { char?: string }) {
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 	const targetIndex = useRef<number>(0);
 	const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
@@ -40,4 +40,4 @@ export default function SplitFlap({ char = ' ' }: { char?: string }) {
 	}, [char, tickToTarget]);
 
 	return <div className="split-flap">{renderChar(currentIndex)}</div>;
-}
+});
