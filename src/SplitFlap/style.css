@@ -18,18 +18,73 @@
 	width: 100%;
 	color: #fff;
 	position: absolute;
+	transform: rotateX(0deg);
+}
+
+.next-character::before,
+.next-character::after {
+	display: inline-flex;
+	/* padding: 1rem 0.5rem; */
+	align-items: center;
+	justify-content: center;
+	border: 1px solid red;
+	/* background-color: red; */
+	border-radius: 0.5rem;
+	height: 100%;
+	width: 100%;
+	color: #fff;
+	position: absolute;
+}
+
+/* Rotate current-character to 90deg; */
+/* Rotate next-character::after from 270deg to 360deg */
+
+@keyframes flip-current-character {
+	from {
+		transform: rotateX(0deg);
+	}
+	to {
+		transform: rotateX(90deg);
+	}
 }
 
 .current-character {
 	z-index: 2;
-
-	&::after {
-		content: attr(data-character);
-		background-color: black;
-	}
+	clip-path: inset(0 0 50%);
+	animation: 300ms flip-current-character linear;
+	animation-delay: 200ms;
+	animation-iteration-count: 1;
 }
 
 .next-character {
-	background-color: green;
+	background-color: purple;
+	/* background-color: red; */
 	z-index: 1;
+}
+
+.next-character::before {
+	content: attr(data-current-character);
+	background-color: red;
+	/* background-color: green; */
+	clip-path: inset(50% 0 0);
+}
+
+@keyframes flip-next-character-after {
+	from {
+		transform: rotateX(90);
+	}
+	to {
+		transform: rotateX(0deg);
+	}
+}
+
+.next-character::after {
+	/* background-color: black; */
+	content: attr(data-next-character);
+	background-color: red;
+	clip-path: inset(50% 0 0);
+	transform: rotateX(90deg);
+	animation: 300ms flip-next-character-after linear;
+	animation-delay: 501ms;
+	animation-iteration-count: 1;
 }

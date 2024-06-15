@@ -3,6 +3,7 @@ import { CHARACTERS, type Character } from './constants';
 import './style.css';
 
 const CHARS_ENDING_IDX = CHARACTERS.length - 1;
+const FLIP_DELAY = 1000;
 
 const charIdx = (char: string) => {
 	const upcasedCharacter = char.toUpperCase();
@@ -32,7 +33,7 @@ export default function SplitFlap({ char = ' ' }: { char?: string }) {
 
 	useEffect(() => {
 		targetIndex.current = charIdx(char);
-		timeoutRef.current = setTimeout(tickToTarget, 200);
+		timeoutRef.current = setTimeout(tickToTarget, FLIP_DELAY);
 
 		return () => {
 			clearTimeout(timeoutRef.current);
@@ -42,15 +43,22 @@ export default function SplitFlap({ char = ' ' }: { char?: string }) {
 	const currentCharacter = characterFromIdx(currentIndex);
 	const nextCharacter = characterFromIdx(currentIndex + 1);
 
-	return (
-		<div className="split-flap-container">
+	const renderNextCharacter = () => {
+		return (
 			<div
-				className="split-flap current-character"
-				data-character={currentCharacter}
+				className="split-flap next-character"
+				data-current-character={currentCharacter}
+				data-next-character={nextCharacter}
 			>
-				{currentCharacter}
+				{nextCharacter}
 			</div>
-			<div className="split-flap next-character">{nextCharacter}</div>
+		);
+	};
+
+	return (
+		<div className="split-flap-container" key={Math.random()}>
+			<div className="split-flap current-character">{currentCharacter}</div>
+			{renderNextCharacter()}
 		</div>
 	);
 }
