@@ -1,4 +1,9 @@
 .split-flap-row {
+	border: 2px dashed red;
 	display: grid;
+	margin-bottom: 1rem;
+	height: 6rem;
+	max-height: 6rem;
 	grid-template-columns: repeat(20, 1fr);
+	column-gap: 0.5rem;
 }

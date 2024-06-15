@@ -2,7 +2,7 @@ import { ChangeEvent, useDeferredValue, useState } from 'react';
 import SplitFlapRow from './SplitFlapRow';
 import './index.css';
 
-const MAX_CHARACTER_COUNT = 120;
+const MAX_CHARACTER_COUNT = 20; // 120;
 const DEFAULT_CHARACTERS_LIMIT = 20;
 const ROW_COUNT = MAX_CHARACTER_COUNT / DEFAULT_CHARACTERS_LIMIT;
 

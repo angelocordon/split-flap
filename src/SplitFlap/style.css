@@ -1,14 +1,35 @@
+.split-flap-container {
+	border: 1px solid blue;
+	font-size: 2.5rem;
+	width: 4rem;
+	height: 6rem;
+	position: relative;
+}
+
 .split-flap {
-	border: 1px solid red;
-	border-radius: 0.5rem;
 	display: inline-flex;
+	padding: 1rem 0.5rem;
 	align-items: center;
 	justify-content: center;
-	background: red;
+	border: 1px solid red;
+	background-color: red;
+	border-radius: 0.5rem;
+	height: 100%;
+	width: 100%;
 	color: #fff;
-	padding: 1rem 0.5rem;
-	font-size: 2.5rem;
-	width: 2.5rem;
-	height: 4rem;
-	margin: 0.25rem;
+	position: absolute;
+}
+
+.current-character {
+	z-index: 2;
+
+	&::after {
+		content: attr(data-character);
+		background-color: black;
+	}
+}
+
+.next-character {
+	background-color: green;
+	z-index: 1;
 }

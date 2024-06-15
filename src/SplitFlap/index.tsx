@@ -16,7 +16,7 @@ const charIdx = (char: string) => {
 	return index === -1 ? 0 : index;
 };
 
-const renderChar = (idx: number): Character => CHARACTERS[idx] ?? ' ';
+const characterFromIdx = (idx: number): Character => CHARACTERS[idx] ?? ' ';
 
 export default function SplitFlap({ char = ' ' }: { char?: string }) {
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -39,5 +39,18 @@ export default function SplitFlap({ char = ' ' }: { char?: string }) {
 		};
 	}, [char, tickToTarget]);
 
-	return <div className="split-flap">{renderChar(currentIndex)}</div>;
+	const currentCharacter = characterFromIdx(currentIndex);
+	const nextCharacter = characterFromIdx(currentIndex + 1);
+
+	return (
+		<div className="split-flap-container">
+			<div
+				className="split-flap current-character"
+				data-character={currentCharacter}
+			>
+				{currentCharacter}
+			</div>
+			<div className="split-flap next-character">{nextCharacter}</div>
+		</div>
+	);
 }
