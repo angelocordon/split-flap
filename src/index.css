@@ -22,13 +22,7 @@ input {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
-	gap: 5rem;
 	align-items: center;
 	justify-content: center;
-}
-
-.split-row {
-	display: grid;
-	grid-template-rows: repeat(3, 1fr);
-	grid-template-columns: repeat(20, 1fr);
+	gap: 3rem;
 }
